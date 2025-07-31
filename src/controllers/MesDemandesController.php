@@ -11,8 +11,7 @@ class MesDemandesController extends BaseController {
 
         $demandeModel = new DemandeServiceModel($this->pdo);
         $demandes = $demandeModel->getUserDemandes($_SESSION['user_id']);
-        $has_demandes = $demandeModel->userHasDemandes($_SESSION['user_id']); // à créer ci-dessous
-
+        
         // Définir les variables pour la vue de la page des demandes
 
         $this->title = 'TECHNOVAServices - Mes Demandes';
