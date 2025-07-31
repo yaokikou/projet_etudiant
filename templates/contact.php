@@ -1,8 +1,3 @@
-<?php $title = 'TECHNOVAService - Contact'; 
-$css = '../assets/css/contact.css'; 
-?>
-
-<?php ob_start();?>
 
 <section>
     <div class="connexion-container">
@@ -49,6 +44,3 @@ $css = '../assets/css/contact.css';
 
 <script src="../assets/js/contact.js"></script>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('layout.php'); ?>

@@ -1,9 +1,4 @@
-<?php
-$title = "TECHNOVAService - Demande de Service";
-$css = "../assets/css/demande_user.css";
-?>
 
-<?php ob_start(); ?>
 <section>
     <div class="connexion-container">
         <h1>Demande de service</h1>
@@ -38,7 +33,7 @@ $css = "../assets/css/demande_user.css";
             </button>
         </form>
         
-        <a href="services.php" class="back-link">
+        <a href="index.php?action=services" class="back-link">
             <i class="fas fa-arrow-left"></i> Retour à la page des services
         </a>
     </div>
@@ -46,6 +41,3 @@ $css = "../assets/css/demande_user.css";
 
 <script src="../assets/js/demande_service.js"></script>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('layout.php');?>

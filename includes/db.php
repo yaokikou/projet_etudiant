@@ -13,7 +13,9 @@ $options = [
 ];
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, $options);
+    // Utiliser le socket MySQL de XAMPP
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset;unix_socket=/opt/lampp/var/mysql/mysql.sock", $user, $pass, $options);
 } catch (PDOException $e) {
-    exit('Erreur de connexion à la base de données : ' . $e->getMessage());
+    // En cas d'erreur, définir $pdo à null au lieu de faire exit()
+    $pdo = null;
 } 

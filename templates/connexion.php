@@ -1,8 +1,5 @@
-<?php
-$title = "TECHNOVAService - Connexion";
-$css = '../assets/css/conexion.css';
-?>
-<?php ob_start(); ?>
+
+
 <section>
     <div class="connexion-container">
         <h1>Connexion</h1>
@@ -17,7 +14,7 @@ $css = '../assets/css/conexion.css';
                 <input type="password" id="motdepasse" name="motdepasse" >
             </div>
             <button type="submit" class="connexion-btn">Se connecter</button>
-            <p>Déja s'inscrire ?<a href="inscription.php"> Inscrivez-vous ! <style>
+            <p>Déja s'inscrire ?<a href="index.php?action=inscription"> Inscrivez-vous ! <style>
                 a{
                     color: #3498db;
                     text-decoration: none;
@@ -28,6 +25,3 @@ $css = '../assets/css/conexion.css';
     <script src="../assets/js/connexion.js"></script>
 </section>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('layout.php'); ?>

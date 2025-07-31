@@ -1,8 +1,4 @@
-<?php
-$title = "TECHNOVAServices - Inscription";
-$css = "../assets/css/inscription.css";
-?>
-<?php ob_start(); ?>
+
 <section>
     <div class="connexion-container">
         <h1>Inscription</h1>
@@ -36,7 +32,3 @@ $css = "../assets/css/inscription.css";
     </div>
     <script src="../assets/js/inscription.js"></script>
 </section>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('layout.php'); ?>

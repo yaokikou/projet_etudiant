@@ -2,5 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: ../connexion.php?message=deconnexion');
+header('Location: ../index.php?action=connexion&message=deconnexion');
 exit; 

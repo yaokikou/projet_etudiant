@@ -1,8 +1,3 @@
-<?php
-$title = "TECHNOVAServices - Publications";
-$css = "../assets/css/publications.css";
-?>
-<?php ob_start(); ?>
 
 <section>
     <h1>Publications</h1>
@@ -16,7 +11,7 @@ $css = "../assets/css/publications.css";
         <?php foreach ($publications as $pub): ?>
             <article class="publication">
                 <div class="publication-image">
-                    <?php if ($pub['image'] && file_exists(__DIR__ . '/assets/img/' . $pub['image'])): ?>
+                    <?php if ($pub['image'] && file_exists(__DIR__ . '/../assets/img/' . $pub['image'])): ?>
                         <img src="assets/img/<?= htmlspecialchars($pub['image']) ?>" alt="Image publication">
                     <?php else: ?>
                         <div class="default-image">
@@ -38,5 +33,3 @@ $css = "../assets/css/publications.css";
         <?php endforeach; ?>
     <?php endif; ?>
 </section>
-<?php $content = ob_get_clean(); ?>
-<?php require('layout.php'); ?>

@@ -1,8 +1,3 @@
-<?php
-$title = "TECHNOVAServices - Services";
-$css = "../assets/css/services.css";
-?>
-<?php ob_start(); ?>
 
 <section class="services-container">
     <div class="services-header">
@@ -21,7 +16,7 @@ $css = "../assets/css/services.css";
             <?php foreach ($services as $service): ?>
                 <div class="service">
                     <div class="service-image-section">
-                        <?php if ($service['image'] && file_exists(__DIR__ . '/assets/img/' . $service['image'])): ?>
+                        <?php if ($service['image'] && file_exists(__DIR__ . '/../assets/img/' . $service['image'])): ?>
                             <img src="assets/img/<?= htmlspecialchars($service['image']) ?>"
                                 alt="<?= htmlspecialchars($service['nom_service']) ?>"
                                 class="service-image">
@@ -30,7 +25,7 @@ $css = "../assets/css/services.css";
                                 <i class="fas fa-cog"></i>
                             </div>
                         <?php endif; ?>
-                        <a href="demande_service.php?service_id=<?= urlencode($service['id']) ?>" class="btn-service">
+                        <a href="index.php?action=demande_service&service_id=<?= urlencode($service['id']) ?>" class="btn-service">
                             <i class="fas fa-paper-plane"></i> Demander ce service
                         </a>
                     </div>
@@ -44,7 +39,3 @@ $css = "../assets/css/services.css";
         </div>
     <?php endif; ?>
 </section>
-<?php $content = ob_get_clean(); ?>
-<?php
-require('layout.php');
-?>
