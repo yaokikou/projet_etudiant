@@ -42,7 +42,7 @@ Plateforme web de services informatiques en architecture MVC (PHP)
 
 ## Contributeurs
 
-- AKOUETE Yao (owner)
+- AKOUETE Yao (Project Lead)
 - AYi Kossi Didier Vital 
 - DA Silvera Espoir 
 - AGBASSAH Débi Kékéli Judith 
