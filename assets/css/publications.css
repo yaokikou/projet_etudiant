@@ -1,0 +1,141 @@
+
+/* Styles responsives pour les publications */
+.publication {
+    display: flex;
+    align-items: flex-start;
+    gap: 2em;
+    margin-bottom: 3em;
+    padding: 1.5em;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.publication-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    flex-shrink: 0;
+}
+
+.publication-image img {
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.publication-image .default-image {
+    width: 500px;
+    height: 300px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.publication-content {
+    flex: 1;
+}
+
+.publication-content h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.publication-content .content {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.publication-content .date-info {
+    font-size: 0.9em;
+    color: #666;
+    padding: 0.5em;
+    background: #fff;
+    border-radius: 4px;
+    border-left: 3px solid #3498db;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .publication-image img,
+    .publication-image .default-image {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    
+    .publication-image .default-image {
+        width: 400px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .publication {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5em;
+        padding: 1em;
+        margin-bottom: 2em;
+    }
+    
+    .publication-image {
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .publication-image img,
+    .publication-image .default-image {
+        max-width: 100%;
+        max-height: 300px;
+        width: 100%;
+    }
+    
+    .publication-image .default-image {
+        height: 200px;
+    }
+    
+    .publication-content {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .publication-content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .publication {
+        padding: 0.8em;
+        margin-bottom: 1.5em;
+    }
+    
+    .publication-image img,
+    .publication-image .default-image {
+        max-height: 250px;
+    }
+    
+    .publication-image .default-image {
+        height: 180px;
+    }
+    
+    .publication-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .publication-content .content {
+        font-size: 0.9rem;
+    }
+    
+    .publication-content .date-info {
+        font-size: 0.8em;
+    }
+}

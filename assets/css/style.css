@@ -5,27 +5,52 @@ body {
     background: #f4f4f4;
     color: #222;
 }
-header {
-    background: #222;
-    color: #fff;
-    padding: 1em 0;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2em;
-    margin: 0;
-    padding: 0;
-}
-nav a {
-    color: #fff;
-    text-decoration: none;
+
+/* Styles personnalisés pour Bootstrap - Header amélioré */
+.navbar-brand {
     font-weight: bold;
 }
-nav a:hover {
-    text-decoration: underline;
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem !important;
 }
+
+.navbar-nav .nav-link:hover {
+    color: #0074d9 !important;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Responsive pour le menu */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #333;
+        border-radius: 8px;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.75rem 0 !important;
+        border-bottom: 1px solid #444;
+}
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Styles pour le contenu principal */
 main {
     max-width: 900px;
     margin: 2em auto;
@@ -34,6 +59,7 @@ main {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+
 footer {
     background: #222;
     color: #fff;
@@ -43,30 +69,34 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
 @media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        gap: 1em;
-    }
     main {
         padding: 1em;
     }
 }
+
+/* Styles pour les tableaux (si pas Bootstrap) */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 1em 0;
 }
+
 table, th, td {
     border: 1px solid #ccc;
 }
+
 th, td {
     padding: 0.5em 1em;
     text-align: left;
 }
+
 tr:nth-child(even) {
     background: #f9f9f9;
 }
+
+/* Styles pour les boutons (si pas Bootstrap) */
 .btn, button {
     background: #0074d9;
     color: #fff;
@@ -79,6 +109,7 @@ tr:nth-child(even) {
     text-decoration: none;
     display: inline-block;
 }
+
 .btn:hover, button:hover {
     background: #005fa3;
 } 

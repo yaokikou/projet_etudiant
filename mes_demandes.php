@@ -13,20 +13,23 @@ include __DIR__.'/includes/header.php';
 ?>
 <section>
     <h1>Mes demandes de services</h1>
+    
+    <?php if (empty($demandes)): ?>
+        <div style="text-align: center; padding: 3rem; color: #666;">
+            <i class="fas fa-clipboard-list" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+            <h2>Aucune demande de service</h2>
+            <p>Vous n'avez pas encore fait de demande de service.</p>
+            <a href="services.php" class="btn" style="margin-top: 1rem;">Découvrir nos services</a>
+        </div>
+    <?php else: ?>
     <table>
         <tr>
-            <th>ID</th>
             <th>Service</th>
-            <th>Description</th>
-            <th>Date</th>
             <th>Statut</th>
         </tr>
         <?php foreach ($demandes as $d): ?>
         <tr>
-            <td><?= $d['id'] ?></td>
             <td><?= htmlspecialchars($d['nom_service']) ?></td>
-            <td><?= nl2br(htmlspecialchars($d['description'])) ?></td>
-            <td><?= $d['date_demande'] ?></td>
             <td>
                 <span style="
                     padding: 4px 8px;
@@ -50,6 +53,8 @@ include __DIR__.'/includes/header.php';
         </tr>
         <?php endforeach; ?>
     </table>
-    <a href="index.php">Retour à l'accueil</a>
+    <?php endif; ?>
+    
+    <a href="index.php">Retour sur la page d'accueil</a>
 </section>
 <?php include __DIR__.'/includes/footer.php'; ?> 

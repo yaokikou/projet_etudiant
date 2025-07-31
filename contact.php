@@ -1,33 +1,46 @@
 <?php
 require_once __DIR__.'/includes/db.php';
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: connexion.php?message=connectez-vous');
-    exit;
-}
 include __DIR__.'/includes/header.php';
+
 $message = '';
+$nom = '';
+$email = '';
+
+// Si l'utilisateur est connecté, récupérer ses informations
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare('SELECT nom_utilisateur, email FROM Utilisateur WHERE id = ?');
+    $stmt->execute([$_SESSION['user_id']]);
+    $user = $stmt->fetch();
+    if ($user) {
+        $nom = $user['nom_utilisateur'];
+        $email = $user['email'];
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = trim($_POST['nom'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $msg = trim($_POST['message'] ?? '');
+    
     if ($nom && $email && $msg) {
-        $stmt = $pdo->prepare('INSERT INTO Contact (nom, email, message) VALUES (?, ?, ?)');
-        $stmt->execute([$nom, $email, $msg]);
-        $message = 'Votre message a bien été envoyé.';
+        // Validation basique de l'email
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $stmt = $pdo->prepare('INSERT INTO Contact (nom, email, message) VALUES (?, ?, ?)');
+            $stmt->execute([$nom, $email, $msg]);
+            $message = 'Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.';
+            
+            // Vider les champs après envoi réussi
+            $nom = '';
+            $email = '';
+        } else {
+            $message = 'Veuillez saisir une adresse email valide.';
+        }
     } else {
         $message = 'Veuillez remplir tous les champs.';
     }
 }
 ?>
-<section>
-    <h1>Contact</h1>
-    <?php if ($message): ?><p><?= htmlspecialchars($message) ?></p><?php endif; ?>
-    <form method="post">
-        <label>Nom : <input type="text" name="nom" required></label><br>
-        <label>Email : <input type="email" name="email" required></label><br>
-        <label>Message : <textarea name="message" required></textarea></label><br>
-        <button type="submit">Envoyer</button>
-    </form>
-</section>
+
+
 <?php include __DIR__.'/includes/footer.php'; ?> 

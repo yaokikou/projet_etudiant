@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS Utilisateur (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom_utilisateur VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    motdepasse VARCHAR(255) NOT NULL
+    motdepasse VARCHAR(255) NOT NULL,
+    role ENUM('utilisateur', 'admin', 'moderateur') NOT NULL DEFAULT 'utilisateur',
+    date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    actif TINYINT(1) NOT NULL DEFAULT 1
 );
 
 -- Table Service
