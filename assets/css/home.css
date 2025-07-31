@@ -18,7 +18,7 @@
         box-sizing: border-box;
     }
     .hero-section {
-        background: linear-gradient(135deg, #d466ea 0%, #b3beb4 100%);
+        background: linear-gradient(135deg, #29991f 0%, #216297 100%);
         min-height: 80vh;
         display: flex;
         align-items: center;

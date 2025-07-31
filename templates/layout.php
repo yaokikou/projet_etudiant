@@ -17,6 +17,7 @@
 </head>
 
 <body>
+
     <?php require_once __DIR__ . '/../includes/header.php'; ?>
 
     <!-- Contenu de la page récuperer dans la variable content  qui sera ensuite envoyer controlleur  -->

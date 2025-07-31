@@ -4,14 +4,11 @@ Plateforme web de services informatiques en architecture MVC (PHP)
 
 ## Fonctionnalités principales
 
-- **Accueil** : Présentation de l'entreprise, mise en avant des services, statistiques, section à propos.
-- **Espace de services** : Affichage dynamique des services avec image, description, et bouton de demande.
-- **Demande de service** : Formulaire pour demander un service spécifique, suivi des demandes par l'utilisateur.
 
-- **Gestion des utilisateurs** : Inscription, connexion, gestion des rôles (utilisateur, admin, etc.).
-- **Publications** : Affichage d'actualités ou d'articles informatiques.
--  **Contact** : Formulaire de contact pour joindre l'équipe.
-- **Administration** : Gestion centralisée des utilisateurs, services, publications, demandes, et contacts (via contrôleurs dédiés).
+
+## Parcours utilisateur
+
+Lorsqu’un utilisateur arrive sur TECHNOVAServices, il découvre d’abord la page d’accueil présentant l’entreprise, les services phares, des statistiques et une section à propos. Il peut naviguer via le menu vers les : Services, Publications, Contact, Connexion. Dans l’espace Services, il accède à la liste des services proposés, chacun avec une image, un titre, une description et un bouton “Demander ce service”. Il peut alors faire une demande personnalisée via un formulaire dédié. Après inscription ou connexion, il accède à un espace personnel pour suivre ses demandes. Les administrateurs disposent d’un accès à un tableau de bord pour gérer l’ensemble du site. L’expérience est fluide, sécurisée et adaptée à tous les écrans.
 
 ## Structure du projet
 

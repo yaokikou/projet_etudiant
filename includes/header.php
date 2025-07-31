@@ -54,7 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                         <?php if ($has_demandes): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="../index.php?action=mes_demandes">Demandes</a>
+                                <a class="nav-link" href="index.php?action=mes_demandes">Demandes</a>
                             </li>
                         <?php endif; ?>
                         <?php if (isAdmin() || isModerator()): ?>

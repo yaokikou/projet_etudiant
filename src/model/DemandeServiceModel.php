@@ -1,20 +1,23 @@
 <?php
 // Model pour la gestion des demandes de service
 
-class DemandeServiceModel {
+class DemandeServiceModel
+{
     private $pdo;
-    
-    public function __construct($pdo) {
+
+    public function __construct($pdo)
+    {
         $this->pdo = $pdo;
     }
-    
+
     //Fonction pour creer une nouvelle demande de service par un utilisateur
 
-    public function createDemande($utilisateur_id, $service_id, $description) {
+    public function createDemande($utilisateur_id, $service_id, $description)
+    {
         if (!$this->pdo) {
             return false;
         }
-        
+
         try {
             $stmt = $this->pdo->prepare('INSERT INTO DemandeService (utilisateur_id, service_id, description) VALUES (?, ?, ?)');
             return $stmt->execute([$utilisateur_id, $service_id, $description]);
@@ -22,14 +25,15 @@ class DemandeServiceModel {
             return false;
         }
     }
-    
+
     //Fonction pour récupérer les demandes de service d'un utilisateur
 
-    public function getUserDemandes($utilisateur_id) {
+    public function getUserDemandes($utilisateur_id)
+    {
         if (!$this->pdo) {
             return [];
         }
-        
+
         try {
             $stmt = $this->pdo->prepare('
                 SELECT ds.*, s.nom_service 
@@ -44,14 +48,15 @@ class DemandeServiceModel {
             return [];
         }
     }
-    
+
     //Fonction pour récupérer toutes les demandes de service
-    
-    public function getAllDemandes() {
+
+    public function getAllDemandes()
+    {
         if (!$this->pdo) {
             return [];
         }
-        
+
         try {
             $stmt = $this->pdo->prepare('
                 SELECT ds.*, s.nom_service, u.nom_utilisateur 
@@ -66,5 +71,10 @@ class DemandeServiceModel {
             return [];
         }
     }
+    public function userHasDemandes($user_id)
+    {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as count FROM DemandeService WHERE utilisateur_id = ?");
+        $stmt->execute([$user_id]);
+        return $stmt->fetch()['count'] > 0;
+    }
 }
-?> 
