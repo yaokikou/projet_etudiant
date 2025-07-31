@@ -1,8 +1,9 @@
 <?php
 // Fichier de connexion à la base de données
+
 $host = 'localhost';
 $db   = 'entreprise_informatique';
-$user = 'root'; // À adapter selon votre configuration
+$user = 'root'; 
 $pass = '';
 $charset = 'utf8mb4';
 
@@ -13,9 +14,11 @@ $options = [
 ];
 
 try {
-    // Utiliser le socket MySQL de XAMPP
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset;unix_socket=/opt/lampp/var/mysql/mysql.sock", $user, $pass, $options);
+    // Utiliser du pdo pour etablir la connexion 
+
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $user, $pass, $options);
 } catch (PDOException $e) {
-    // En cas d'erreur, définir $pdo à null au lieu de faire exit()
+
+    // En cas d'erreur, définir $pdo à null 
     $pdo = null;
 } 

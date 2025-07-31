@@ -7,7 +7,8 @@ class InscriptionController extends BaseController {
     public function index() {
         $message = '';
         
-        // Traitement du formulaire d'inscription
+        // Traitement du formulaire d'inscription & vérification des données 
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom_utilisateur = trim($_POST['nom_utilisateur'] ?? '');
             $email = trim($_POST['email'] ?? '');
@@ -41,11 +42,13 @@ class InscriptionController extends BaseController {
             }
         }
         
-        // Définir les variables pour la vue
+        // Définir les variables pour la vue de la page d'inscription
+
         $this->title = 'TECHNOVAServices - Inscription';
         $this->css = '/site-informatique/assets/css/inscription.css';
         
-        // Rendre la vue avec les données
+        // Rendre les données à la vue
+
         $this->render('inscription', [
             'message' => $message
         ]);

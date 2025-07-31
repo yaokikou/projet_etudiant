@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionTextarea = document.getElementById('description');
     const submitBtn = document.querySelector('.connexion-btn');
     
-    // Éléments pour afficher les erreurs
+    // J'ai créé un élément pour afficher les erreurs
+
     let errorElements = {};
     
-    // Créer les éléments d'erreur pour chaque champ
+    // Création  des éléments d'erreur pour chaque champ
     [serviceSelect, descriptionTextarea].forEach(input => {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'field-error';
@@ -16,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElements[input.id] = errorDiv;
     });
     
-    // Fonctions de validation
+    // Fonctions de validation du formulaire
+
     function validateService(serviceId) {
         if (!serviceId || serviceId === '') {
             return 'Veuillez sélectionner un service';
@@ -37,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
     }
     
-    // Afficher/masquer les erreurs
+    // Fonction pour afficher les erreurs et les masquer
+
     function showError(fieldId, message) {
         const errorElement = errorElements[fieldId];
         if (errorElement) {
@@ -53,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Validation en temps réel
+    // Validation en temps réel et gestion des erreurs
+
     function validateField(input, validator) {
         const value = input.value;
         const error = validator(value);
@@ -70,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Événements de validation en temps réel
+
     serviceSelect.addEventListener('change', function() {
         validateField(serviceSelect, validateService);
     });
@@ -79,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Validation lors de la perte de focus
+
     serviceSelect.addEventListener('blur', function() {
         validateField(serviceSelect, validateService);
     });
@@ -87,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         validateField(descriptionTextarea, validateDescription);
     });
     
-    // Validation complète du formulaire
+    // Validation complète du formulaire si apres les normes de validation respectées
+
     function validateForm() {
         const serviceValid = validateField(serviceSelect, validateService);
         const descriptionValid = validateField(descriptionTextarea, validateDescription);
@@ -96,34 +103,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Gestion de la soumission du formulaire
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         if (validateForm()) {
+
+            // Si le formulaire est valide, on peut procéder à l'envoi
             // Désactiver le bouton pendant l'envoi
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
             
             // Soumettre le formulaire
+
             form.submit();
         } else {
-            // Afficher un message d'erreur général
+
+            // Si le formulaire n'est pas valide, afficher un message d'erreur général
+           
+
             const generalError = document.createElement('div');
             generalError.className = 'connexion-message error';
             generalError.textContent = 'Veuillez corriger les erreurs dans le formulaire.';
             generalError.style.marginBottom = '18px';
             
             // Supprimer l'ancien message d'erreur général s'il existe
+
             const existingError = document.querySelector('.connexion-message.error');
             if (existingError) {
                 existingError.remove();
             }
             
             // Insérer le nouveau message d'erreur
+
             const subtitle = document.querySelector('.subtitle');
             subtitle.parentNode.insertBefore(generalError, subtitle.nextSibling);
             
             // Scroll vers le premier champ avec erreur
+
             const firstError = document.querySelector('.field-error[style*="display: block"]');
             if (firstError) {
                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -131,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Amélioration UX : focus sur le premier champ vide
+    // Focus sur le premier champ vide si c'est vide et non rempli 
+
     window.addEventListener('load', function() {
         if (!serviceSelect.value) {
             serviceSelect.focus();
@@ -141,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Compteur de caractères pour la description
+
     const charCounter = document.createElement('div');
     charCounter.className = 'char-counter';
     charCounter.style.cssText = 'text-align: right; font-size: 0.8rem; color: #7f8c8d; margin-top: 4px;';
@@ -161,18 +181,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     descriptionTextarea.addEventListener('input', updateCharCounter);
-    updateCharCounter(); // Initialisation
+    updateCharCounter(); 
     
     // Amélioration UX : prévisualisation du service sélectionné
+
     serviceSelect.addEventListener('change', function() {
         const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
         if (selectedOption && selectedOption.value) {
-            // Ajouter une classe pour indiquer qu'un service est sélectionné
+
+            // Ajout de classe pour indiquer qu'un service est sélectionné
+
             serviceSelect.style.borderColor = '#2ecc71';
         }
     });
     
     // Initialisation de la couleur de bordure si un service est déjà sélectionné
+    
     if (serviceSelect.value) {
         serviceSelect.style.borderColor = '#2ecc71';
     }

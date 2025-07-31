@@ -1,7 +1,6 @@
 <?php
-/**
- * Model pour la gestion des services
- */
+// Model pour la gestion des services
+
 class ServiceModel {
     private $pdo;
     
@@ -9,9 +8,8 @@ class ServiceModel {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Récupérer tous les services actifs
-     */
+    //Fonction pour récupérer tous les services actifs
+
     public function getActiveServices() {
         if (!$this->pdo) {
             return [];
@@ -26,9 +24,8 @@ class ServiceModel {
         }
     }
     
-    /**
-     * Récupérer un service par ID
-     */
+    //Ensuite, on peut ajouter une fonction pour récupérer un service par son ID
+    
     public function getServiceById($id) {
         if (!$this->pdo) {
             return null;

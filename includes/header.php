@@ -1,8 +1,11 @@
 <?php
 // Inclure les fonctions d'authentification
+
 require_once __DIR__.'/auth.php';
+require_once __DIR__.'/db.php';
 
 //Démarrer la session seulement si elle n'est pas déjà active
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -40,6 +43,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         $current_user = getCurrentUser();
                         
                         // Vérifier si l'utilisateur a des demandes de service
+
                         if ($pdo) {
                             $stmt = $pdo->prepare('SELECT COUNT(*) as count FROM DemandeService WHERE utilisateur_id = ?');
                             $stmt->execute([$_SESSION['user_id']]);
@@ -50,7 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                         <?php if ($has_demandes): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=mes_demandes">Demandes</a>
+                                <a class="nav-link" href="../index.php?action=mes_demandes">Demandes</a>
                             </li>
                         <?php endif; ?>
                         <?php if (isAdmin() || isModerator()): ?>

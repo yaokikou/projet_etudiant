@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($title ?? 'TECHNOVAServices') ?></title>
-    <!-- Bootstrap CSS -->
+    <!-- Responsivité gerer par BOOSTRAP -->
     <link rel="stylesheet" href="/site-informatique/assets/css/style.css">
     <link rel="stylesheet" href="/site-informatique/assets/css/footer.css">
     <?php if (isset($css)): ?>
@@ -19,7 +19,7 @@
 <body>
     <?php require_once __DIR__ . '/../includes/header.php'; ?>
 
-    <!-- Contenu de la page -->
+    <!-- Contenu de la page récuperer dans la variable content  qui sera ensuite envoyer controlleur  -->
     <?= $content ?? '' ?>
 
     <?php require_once __DIR__ . '/../includes/footer.php'; ?>

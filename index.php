@@ -1,12 +1,12 @@
 <?php
-// Router principal MVC
+//Le routeur principal du site
 session_start();
 
-// Inclure les fichiers de base
+// Inclusion des fichiers de base
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/auth.php';
 
-// Définir les routes disponibles
+// Définition des routes disponibles
 $routes = [
     'accueil' => 'HomepageController',
     'services' => 'ServicesController', 
@@ -18,26 +18,32 @@ $routes = [
     'mes_demandes' => 'MesDemandesController'
 ];
 
-// Récupérer l'action demandée
+// Récupération  de l'action demandé par l'utilsateur
+// Par défaut, on charge la page d'accueil
+
 $action = $_GET['action'] ?? 'accueil';
 
 // Vérifier si la route existe
+
 if (!array_key_exists($action, $routes)) {
     $action = 'accueil'; // Route par défaut
 }
 
-// Charger le controller correspondant
+// On charge le contrôleur correspondant à l'action demandée
+
 $controllerName = $routes[$action];
 $controllerFile = __DIR__ . "/src/controllers/{$controllerName}.php";
 
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
     
-    // Créer une instance du controller et appeler la méthode principale
+    // Creation de l'instance du contrôleur
+
     $controller = new $controllerName();
     $controller->index();
 } else {
-    // Page d'erreur 404
+    // Le cas ou la page n'existe pas on affiche une ereur 404
+
     http_response_code(404);
     echo "Page non trouvée";
 }

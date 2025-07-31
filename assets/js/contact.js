@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageInput = document.getElementById('message');
     const submitBtn = document.querySelector('.connexion-btn');
     
-    // Éléments pour afficher les erreurs
+    // J'ai creer un element pour afficher les erreurs
+
     let errorElements = {};
     
-    // Créer les éléments d'erreur pour chaque champ
+    // Création des éléments d'erreur pour chaque champ
+
     [nomInput, emailInput, messageInput].forEach(input => {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'field-error';
@@ -17,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElements[input.id] = errorDiv;
     });
     
-    // Regex pour validation
+    // Regex pour validation de l'email et du nom
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const nomRegex = /^[a-zA-ZÀ-ÿ\s'-]{2,50}$/;
     
-    // Fonctions de validation
+    // Fonctions de validation du nom, email et message
+
     function validateNom(nom) {
         if (!nom.trim()) {
             return 'Le nom est requis';
@@ -29,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (nom.trim().length < 2) {
             return 'Le nom doit contenir au moins 2 caractères';
         }
-        if (nom.trim().length > 50) {
-            return 'Le nom ne peut pas dépasser 50 caractères';
+        if (nom.trim().length > 20) {
+            return 'Le nom ne peut pas dépasser 20 caractères';
         }
         if (!nomRegex.test(nom.trim())) {
             return 'Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes';
@@ -61,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
     }
     
-    // Afficher/masquer les erreurs
+    // Fonsction pour afficher les erreurs et les masquer 
+
     function showError(fieldId, message) {
         const errorElement = errorElements[fieldId];
         if (errorElement) {
@@ -77,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Validation en temps réel
+    // Validation en temps réel et gestion des erreurs
+
     function validateField(input, validator) {
         const value = input.value;
         const error = validator(value);
@@ -93,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Événements de validation en temps réel
+    // Événements de validation en temps réel 
+
     nomInput.addEventListener('input', function() {
         if (!nomInput.readOnly) {
             validateField(nomInput, validateNom);
@@ -111,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Validation lors de la perte de focus
+
     nomInput.addEventListener('blur', function() {
         if (!nomInput.readOnly) {
             validateField(nomInput, validateNom);
@@ -127,7 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
         validateField(messageInput, validateMessage);
     });
     
-    // Validation complète du formulaire
+    // Validation complète du formulaire apres la norme de validation respectée
+
     function validateForm() {
         const nomValid = nomInput.readOnly || validateField(nomInput, validateNom);
         const emailValid = emailInput.readOnly || validateField(emailInput, validateEmail);
@@ -136,35 +145,45 @@ document.addEventListener('DOMContentLoaded', function() {
         return nomValid && emailValid && messageValid;
     }
     
-    // Gestion de la soumission du formulaire
+    // Gestion de la soumission du formulaire 
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         if (validateForm()) {
+
+            // Si le formulaire est valide, envoyer les données 
             // Désactiver le bouton pendant l'envoi
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
             
             // Soumettre le formulaire
+
             form.submit();
         } else {
+
             // Afficher un message d'erreur général
+
             const generalError = document.createElement('div');
             generalError.className = 'connexion-message error';
             generalError.textContent = 'Veuillez corriger les erreurs dans le formulaire.';
             generalError.style.marginBottom = '18px';
             
             // Supprimer l'ancien message d'erreur général s'il existe
+
             const existingError = document.querySelector('.connexion-message.error');
             if (existingError) {
                 existingError.remove();
             }
             
             // Insérer le nouveau message d'erreur
+
             const subtitle = document.querySelector('.subtitle');
             subtitle.parentNode.insertBefore(generalError, subtitle.nextSibling);
             
             // Scroll vers le premier champ avec erreur
+
             const firstError = document.querySelector('.field-error[style*="display: block"]');
             if (firstError) {
                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -172,7 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Amélioration UX : focus sur le premier champ vide
+    //Focus sur le premier champ vide si nom  rempli 
+
     window.addEventListener('load', function() {
         if (!nomInput.value && !nomInput.readOnly) {
             nomInput.focus();
@@ -184,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Compteur de caractères pour le message
+
     const charCounter = document.createElement('div');
     charCounter.className = 'char-counter';
     charCounter.style.cssText = 'text-align: right; font-size: 0.8rem; color: #7f8c8d; margin-top: 4px;';
@@ -204,5 +225,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     messageInput.addEventListener('input', updateCharCounter);
-    updateCharCounter(); // Initialisation
+    updateCharCounter(); 
 }); 

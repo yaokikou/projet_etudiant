@@ -1,18 +1,14 @@
 <?php
-/**
- * Fonctions d'authentification et de gestion des rôles
- */
+//Fonction pour la gestion de l'authentification et des rôles des utilisateurs
 
-/**
- * Vérifie si l'utilisateur est connecté
- */
+//Fonction pour vérifier si l'utilisateur est connecté
+
 function isLoggedIn() {
     return isset($_SESSION['user_id']) && isset($_SESSION['nom_utilisateur']);
 }
 
-/**
- * Vérifie si l'utilisateur a un rôle spécifique
- */
+// Fonction pour vérifier si l'utilisateur a un rôle spécifique
+
 function hasRole($role) {
     if (!isLoggedIn()) {
         return false;
@@ -26,23 +22,20 @@ function hasRole($role) {
     return $user && $user['role'] === $role;
 }
 
-/**
- * Vérifie si l'utilisateur est admin
- */
+// Fonction pour vérifier si l'utilisateur est admin
+
 function isAdmin() {
     return hasRole('admin');
 }
 
-/**
- * Vérifie si l'utilisateur est modérateur ou admin
- */
+// Fonction pour vérifier si l'utilisateur est modérateur ou admin
+
 function isModerator() {
     return hasRole('moderateur') || hasRole('admin');
 }
 
-/**
- * Redirige vers la page de connexion si non connecté
- */
+// Fonction pour la redirection vers la page de connexion si ce n'est pas fait 
+
 function requireLogin() {
     if (!isLoggedIn()) {
         header('Location: connexion.php?message=connectez-vous');
@@ -50,9 +43,8 @@ function requireLogin() {
     }
 }
 
-/**
- * Redirige vers la page d'accueil si l'utilisateur n'a pas les droits admin
- */
+//Fonction pour rediriger l'utilisateur vers l'acceuil si ce n'est pas admin 
+
 function requireAdmin() {
     requireLogin();
     if (!isAdmin()) {
@@ -61,9 +53,8 @@ function requireAdmin() {
     }
 }
 
-/**
- * Redirige vers la page d'accueil si l'utilisateur n'a pas les droits modérateur
- */
+//Fonction pour rediriger vers l'accueil si ce n'est pas un moderateur
+
 function requireModerator() {
     requireLogin();
     if (!isModerator()) {
@@ -72,9 +63,8 @@ function requireModerator() {
     }
 }
 
-/**
- * Récupère les informations de l'utilisateur connecté
- */
+//Fonction pour recuperer les informations des utilisateurs connecté
+
 function getCurrentUser() {
     if (!isLoggedIn()) {
         return null;
@@ -86,9 +76,8 @@ function getCurrentUser() {
     return $stmt->fetch();
 }
 
-/**
- * Détermine la page de redirection après connexion selon le rôle
- */
+//Fonction pour determiner la page de vue apres connexion selon les roles 
+
 function getRedirectAfterLogin($user) {
     switch ($user['role']) {
         case 'admin':

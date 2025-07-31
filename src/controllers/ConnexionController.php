@@ -7,7 +7,7 @@ class ConnexionController extends BaseController {
     public function index() {
         $message = '';
         
-        // Traitement des messages
+        // Traitement des messages de statut lors du remplissage du formulaire de connexion
         if (isset($_GET['message'])) {
             switch ($_GET['message']) {
                 case 'connectez-vous':
@@ -23,6 +23,7 @@ class ConnexionController extends BaseController {
         }
         
         // Traitement du formulaire de connexion
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom_utilisateur = trim($_POST['nom_utilisateur'] ?? '');
             $motdepasse = $_POST['motdepasse'] ?? '';
@@ -39,7 +40,8 @@ class ConnexionController extends BaseController {
                         $_SESSION['nom_utilisateur'] = $user['nom_utilisateur'];
                         $_SESSION['role'] = $user['role'];
                         
-                        // Redirection selon le rôle
+                        // Gestion de la redirection selon le rôle de l'utilisateur
+
                         if ($user['role'] === 'admin' || $user['role'] === 'moderateur') {
                             $this->redirect('admin/');
                         } else {
@@ -54,11 +56,13 @@ class ConnexionController extends BaseController {
             }
         }
         
-        // Définir les variables pour la vue
+        // Définir les variables pour la vue pour la page de connexion
+
         $this->title = 'TECHNOVAServices - Connexion';
         $this->css = '/site-informatique/assets/css/connexion.css';
         
-        // Rendre la vue avec les données
+        // Rendre les données à la vue
+        
         $this->render('connexion', [
             'message' => $message
         ]);

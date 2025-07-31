@@ -1,4 +1,5 @@
 // Confirmation pour les liens de suppression
+
 window.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[onclick]').forEach(function(link) {
         link.addEventListener('click', function(e) {
@@ -8,9 +9,11 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-// Feedback simple pour les formulaires (exemple)
+
+// Validation des formulaires
+
 document.querySelectorAll('form').forEach(function(form) {
     form.addEventListener('submit', function() {
-        // On pourrait afficher un loader ou désactiver le bouton
+       
     });
 }); 

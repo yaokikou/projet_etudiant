@@ -1,7 +1,7 @@
 <?php
-/**
- * Model pour la gestion des publications
- */
+
+// Model pour la gestion des publications
+
 class PublicationModel {
     private $pdo;
     
@@ -9,9 +9,8 @@ class PublicationModel {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Récupérer toutes les publications actives
-     */
+    // Fonction pour récupérer toutes les publications actives
+
     public function getActivePublications() {
         if (!$this->pdo) {
             return [];
@@ -26,9 +25,9 @@ class PublicationModel {
         }
     }
     
-    /**
-     * Récupérer une publication par ID
-     */
+    
+     //Ensuite, on peut ajouter une fonction pour récupérer une publication par son ID
+
     public function getPublicationById($id) {
         if (!$this->pdo) {
             return null;

@@ -1,7 +1,7 @@
 <?php
-/**
- * Classe de base pour tous les controllers
- */
+
+//Classe de base pour tout les controlleur pour centraliser les fonctionnalités communes
+
 class BaseController {
     protected $pdo;
     protected $title;
@@ -12,19 +12,21 @@ class BaseController {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Méthode pour rendre une vue
-     */
+    //Fonction pour gerer le transfert des données à la vue de chaque controller
+
     protected function render($viewName, $data = []) {
         // Rendre les variables disponibles dans la vue
+
         extract($data);
     
-        // Capture le contenu de la vue
+        // Sauvegarde les contenu de la vue 
+
         ob_start();
         require __DIR__ . "/../../templates/{$viewName}.php";
         $content = ob_get_clean();
     
-        // Titre et CSS personnalisés si définis
+        // Transmet les données à la vue principale autrement le header et le footer
+
         $title = $this->title ?? 'TECHNOVAServices';
         $css = $this->css ?? '/site-informatique/assets/css/style.css';
     
@@ -32,26 +34,24 @@ class BaseController {
         require __DIR__ . '/../../templates/layout.php';
     }
     
-    /**
-     * Méthode pour rediriger
-     */
+    // Fonction pour rediriger vers une autre page
+
     protected function redirect($url) {
         header("Location: $url");
         exit;
     }
     
-    /**
-     * Méthode pour vérifier si l'utilisateur est connecté
-     */
+    // Fonction pour vérifier si l'utilisateur est connecté
+
     protected function requireLogin() {
         if (!isLoggedIn()) {
             $this->redirect('index.php?action=connexion&message=connectez-vous');
         }
     }
     
-    /**
-     * Méthode pour vérifier les droits admin
-     */
+    
+    // Fonction pour vérifier si l'utilisateur est un administrateur
+    
     protected function requireAdmin() {
         $this->requireLogin();
         if (!isAdmin()) {

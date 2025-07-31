@@ -1,7 +1,6 @@
 <?php
-/**
- * Model pour la gestion des contacts
- */
+// Model pour la gestion des requetes de contact
+
 class ContactModel {
     private $pdo;
     
@@ -9,9 +8,8 @@ class ContactModel {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Créer un nouveau contact
-     */
+    // Fonction pour créer une nouvelle requête de prise de contact avec un utilisateur
+
     public function createContact($nom, $email, $message) {
         if (!$this->pdo) {
             return false;
@@ -25,9 +23,8 @@ class ContactModel {
         }
     }
     
-    /**
-     * Récupérer tous les contacts
-     */
+    // Fonction pour récupérer toutes les demandes de contact envoyees par les utilisateurs
+
     public function getAllContacts() {
         if (!$this->pdo) {
             return [];

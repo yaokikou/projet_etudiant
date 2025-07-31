@@ -1,7 +1,7 @@
 <?php
-/**
- * Model pour la gestion des utilisateurs
- */
+
+ // Model pour la gestion des utilisateurs
+ 
 class UserModel {
     private $pdo;
     
@@ -9,9 +9,8 @@ class UserModel {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Authentifier un utilisateur
-     */
+   //Authentifier un utilisateur par nom d'utilisateur et mot de passe
+
     public function authenticate($nom_utilisateur, $motdepasse) {
         if (!$this->pdo) {
             return null;
@@ -32,9 +31,8 @@ class UserModel {
         }
     }
     
-    /**
-     * Créer un nouvel utilisateur
-     */
+    // Fonction pour créer un nouvel utilisateur avec pour role utilisateur
+
     public function createUser($nom_utilisateur, $email, $motdepasse, $role = 'utilisateur') {
         if (!$this->pdo) {
             return false;
@@ -49,9 +47,8 @@ class UserModel {
         }
     }
     
-    /**
-     * Vérifier si un nom d'utilisateur existe
-     */
+    //Fonction pour vérifier si un nom d'utilisateur existe
+
     public function usernameExists($nom_utilisateur) {
         if (!$this->pdo) {
             return false;
@@ -66,9 +63,9 @@ class UserModel {
         }
     }
     
-    /**
-     * Vérifier si un email existe
-     */
+    
+     //Fonction pour vérifier si un email existe
+
     public function emailExists($email) {
         if (!$this->pdo) {
             return false;

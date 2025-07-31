@@ -10,6 +10,7 @@ class ContactController extends BaseController {
         $email = '';
         
         // Si l'utilisateur est connecté, récupérer ses informations
+
         if (isset($_SESSION['user_id'])) {
             $stmt = $this->pdo->prepare('SELECT nom_utilisateur, email FROM Utilisateur WHERE id = ?');
             $stmt->execute([$_SESSION['user_id']]);
@@ -20,7 +21,8 @@ class ContactController extends BaseController {
             }
         }
         
-        // Traitement du formulaire
+        // Traitement du formulaire de contact
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom = trim($_POST['nom'] ?? '');
             $email = trim($_POST['email'] ?? '');
@@ -44,11 +46,13 @@ class ContactController extends BaseController {
             }
         }
         
-        // Définir les variables pour la vue
+        // Définir les variables pour la vue pour la page de contact
+
         $this->title = 'TECHNOVAServices - Contact';
         $this->css = '/site-informatique/assets/css/contact.css';
         
-        // Rendre la vue avec les données
+        // Rendre les données à la vue
+        
         $this->render('contact', [
             'message' => $message,
             'nom' => $nom,

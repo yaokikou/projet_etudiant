@@ -1,4 +1,5 @@
-// Récupération des éléments par les ID des champs 
+// Récupération des éléments par les id des champs 
+
 const nom_utilisateur = document.getElementById("nom_utilisateur");
 const email = document.getElementById("email");
 const motdepasse = document.getElementById("motdepasse");
@@ -6,23 +7,27 @@ const motdepasse2 = document.getElementById("motdepasse2");
 const message = document.getElementById("message");
 const registerContainer = document.getElementById("register-container");
 
-// Fonction de validation d'email
+// Fonction de validation d'email avec sa regex
+
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
 // Fonction de validation de mot de passe
+
 function isValidPassword(password) {
     return password.length >= 6;
 }
 
-// Fonction de validation de nom d'utilisateur
+// Fonction de validation de nom d'utilisateur avec sa regex
+
 function isValidUsername(username) {
     return username.length >= 3 && /^[a-zA-Z0-9_]+$/.test(username);
 }
 
-// Validation en temps réel
+// Validation en temps réel si les champs sont remplis correctement
+
 nom_utilisateur.addEventListener('input', function() {
     if (this.value.trim() !== '' && !isValidUsername(this.value)) {
         this.style.borderColor = 'red';
@@ -63,12 +68,14 @@ motdepasse2.addEventListener('input', function() {
     }
 });
 
-// Validation lors de la soumission du formulaire
+// Validation lors de la soumission du formulaire si tout est correct
+
 registerContainer.addEventListener("submit", function (e) {
     let hasErrors = false;
     let errorMessage = '';
 
-    // Vérifier si les champs sont vides
+    // Vérifier si les champs sont vides pour empecher la soumission
+
     if (nom_utilisateur.value.trim() === "") {
         nom_utilisateur.style.borderColor = 'red';
         errorMessage = "Veuillez remplir tous les champs !";
@@ -110,6 +117,7 @@ registerContainer.addEventListener("submit", function (e) {
     }
 
     // Empêche le formulaire de se soumettre si des erreurs sont détectées
+
     if (hasErrors) {
         e.preventDefault();
         message.textContent = errorMessage;
@@ -118,6 +126,7 @@ registerContainer.addEventListener("submit", function (e) {
     }
 
     // Si tout est OK, réinitialiser les styles
+    
     nom_utilisateur.style.borderColor = '#ddd';
     email.style.borderColor = '#ddd';
     motdepasse.style.borderColor = '#ddd';

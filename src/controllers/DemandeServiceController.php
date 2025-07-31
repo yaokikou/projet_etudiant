@@ -10,11 +10,13 @@ class DemandeServiceController extends BaseController {
         
         $message = '';
         
-        // Récupérer les services disponibles
+        // Récupération de la liste des services actifs depuis le modèle
+        
         $serviceModel = new ServiceModel($this->pdo);
         $services = $serviceModel->getActiveServices();
         
-        // Traitement du formulaire
+        // Traitement du formulaire de demande de service
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $service_id = $_POST['service_id'] ?? '';
             $description = trim($_POST['description'] ?? '');
@@ -31,11 +33,13 @@ class DemandeServiceController extends BaseController {
             }
         }
         
-        // Définir les variables pour la vue
+        // Définir les variables pour la vue de la page de demande de service
+
         $this->title = 'TECHNOVAServices - Demande de Service';
         $this->css = '/site-informatique/assets/css/demande_user.css';
         
-        // Rendre la vue avec les données
+        // Rendre les données à la vue
+
         $this->render('demande_service', [
             'services' => $services,
             'message' => $message

@@ -7,15 +7,18 @@ class MesDemandesController extends BaseController {
     public function index() {
         $this->requireLogin();
         
-        // Récupérer les demandes de l'utilisateur
+        // Récupération de la liste des demandes de service de l'utilisateur connecté depuis le modèle
+
         $demandeModel = new DemandeServiceModel($this->pdo);
         $demandes = $demandeModel->getUserDemandes($_SESSION['user_id']);
         
-        // Définir les variables pour la vue
+        // Définir les variables pour la vue de la page des demandes
+
         $this->title = 'TECHNOVAServices - Mes Demandes';
-        $this->css = '/site-informatique/assets/css/demande_user.css';
+      
         
-        // Rendre la vue avec les données
+        // Rendre les données à la vue
+        
         $this->render('mes_demandes', [
             'demandes' => $demandes
         ]);

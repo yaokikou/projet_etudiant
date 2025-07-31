@@ -1,6 +1,6 @@
 
 
-<!-- Section Hero -->
+<!-- Logo et description de l'entreprise -->
 <section class="hero-section fullwidth-section">
     <div class="hero-content">
         <h1 class="hero-title">TECHNOVAServices</h1>
@@ -32,7 +32,7 @@
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <!-- Services par défaut si aucun service en base -->
+            <!-- Services afficher par défaut s'il n'ya pas de services dans la base de donnée  -->
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-code"></i>
@@ -72,7 +72,7 @@
     </div>
 </section>
 
-<!-- Section Statistiques -->
+<!-- Section de nos exploit  -->
 <section class="stats-section fullwidth-section">
     <div class="stats-container">
         <div class="section-header">
@@ -100,7 +100,7 @@
     </div>
 </section>
 
-<!-- Section À propos -->
+<!-- Section À propos  de Nous -->
 <section class="about-section fullwidth-section">
     <div class="about-container">
         <div class="about-content">

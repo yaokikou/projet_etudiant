@@ -1,7 +1,6 @@
 <?php
-/**
- * Model pour la gestion des demandes de service
- */
+// Model pour la gestion des demandes de service
+
 class DemandeServiceModel {
     private $pdo;
     
@@ -9,9 +8,8 @@ class DemandeServiceModel {
         $this->pdo = $pdo;
     }
     
-    /**
-     * Créer une nouvelle demande de service
-     */
+    //Fonction pour creer une nouvelle demande de service par un utilisateur
+
     public function createDemande($utilisateur_id, $service_id, $description) {
         if (!$this->pdo) {
             return false;
@@ -25,9 +23,8 @@ class DemandeServiceModel {
         }
     }
     
-    /**
-     * Récupérer les demandes d'un utilisateur
-     */
+    //Fonction pour récupérer les demandes de service d'un utilisateur
+
     public function getUserDemandes($utilisateur_id) {
         if (!$this->pdo) {
             return [];
@@ -48,9 +45,8 @@ class DemandeServiceModel {
         }
     }
     
-    /**
-     * Récupérer toutes les demandes (pour admin)
-     */
+    //Fonction pour récupérer toutes les demandes de service
+    
     public function getAllDemandes() {
         if (!$this->pdo) {
             return [];
